@@ -14,7 +14,7 @@ def pedir_entero(mensaje: str = 'Ingrese un entero', *, marcador: bool = True) -
 def pedir_entero_rango(mensaje: str = 'Ingrese un entero', *, mínimo: int = 0, máximo: int = 1,
                        marcador: bool = True, ) -> int:
     while True:
-        número:int = pedir_entero(mensaje, marcador)
+        número:int = pedir_entero(mensaje, marcador=marcador)
         if mínimo <= número <= máximo:
             return número
         else:
@@ -36,7 +36,7 @@ def pedir_ciertos_enteros(cantidad: int = 1) -> list[int]:
     return números
 
 #====================================================Decimales====================================================
-def pedir_decimal(mensaje:str='Ingrese un decimal', marcador:bool=True) -> float:
+def pedir_decimal(mensaje:str='Ingrese un decimal', *, marcador:bool=True) -> float:
     while True:
         try:
             if marcador:
@@ -46,10 +46,10 @@ def pedir_decimal(mensaje:str='Ingrese un decimal', marcador:bool=True) -> float
         except ValueError:
             print('[red]ERROR: Solo decimales admitidos.[/red]')
 
-def pedir_decimal_rango(mensaje: str = 'Ingrese un decimal', marcador: bool = True,
+def pedir_decimal_rango(mensaje: str = 'Ingrese un decimal', *, marcador: bool = True,
                         mínimo: float = 0.0, máximo: float = 1.0) -> float:
     while True:
-        número:float = pedir_decimal(mensaje, marcador)
+        número:float = pedir_decimal(mensaje, marcador=marcador)
         if mínimo <= número <= máximo:
             return número
         else:

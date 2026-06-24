@@ -1,4 +1,4 @@
-__version__ = "2.0.0"
+__version__ = "2.1.2"
 __author__ = "END_MATH"
 __description__ = """
 Usar inputs.py para entradas de usuario y aesthetic.py para cuestiones estéticas
