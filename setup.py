@@ -7,4 +7,7 @@ setup(
     description="Librería colaborativa para clases de la universidad",
     author="Math",
     python_requires=">=3.8",
+    install_requires=[
+        'rich',
+        ]
 )
