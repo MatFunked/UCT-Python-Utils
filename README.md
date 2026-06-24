@@ -10,7 +10,7 @@ Además:
 
 Fix (2.1.1):
 * Se ha solucionado el problema con la función pedir_entero_rango().
----
+```
 
 ## Cómo instalar (How to install)
 
