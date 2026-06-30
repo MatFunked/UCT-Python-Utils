@@ -1,7 +1,9 @@
 from rich import print
 from collections.abc import Callable
 from utils.inputs import pedir_texto_no_vacío
+from typing import Any
 
+#===================================================Matrices===================================================
 def construir_matriz(filas: int = 1, columnas: int = 1, 
                      función_usada: Callable = pedir_texto_no_vacío, 
                      *args, **kwargs) -> list[list]:
@@ -21,11 +23,17 @@ def construir_matriz(filas: int = 1, columnas: int = 1,
             
     return matriz
 
+def mostrar_valor_matriz(matriz: list[list[Any]] | None = None, x: int = 1, y: int = 1) -> Any:
+    '''Muestra lo que contiene una Matriz en un punto'''
+    if matriz is None:
+        print('[red]ERROR: Matriz no válida o inexistente.[/red]')
+        return
+    return matriz[y - 1][x - 1]
 
-def reemplazar_valor(matriz: list[list] = None,
+def reemplazar_valor_matriz(matriz: list[list[Any]] | None = None,
                      x: int = 1, 
                      y: int = 1,
-                     reemplazo = None,
+                     reemplazo: Any = None,
                      función_usada: Callable = pedir_texto_no_vacío,
                      *args, **kwargs) -> None:
     """
@@ -56,15 +64,34 @@ def reemplazar_valor(matriz: list[list] = None,
 
     matriz[y - 1][x - 1] = reemplazo
 
-def añadir_datos(lista: list[float], mensaje: str = 'Ingrese un dato') -> None:
-    MÉTODOS_SALIDA: tuple[str] = ('salir', 'exit')
+def imprimir_matriz(matriz: list[list[Any]] | None = None) -> None:
+    '''Imprime lo que contiene una Matriz.'''
+    if matriz is None:
+        print('[red]ERROR: Matriz no válida o inexistente.[/red]')
+        return
+    for i in matriz:
+        print(i)
+
+#====================================================Listas====================================================
+def añadir_datos_lista(lista: list[Any] = None,
+                       función_usada: function = pedir_texto_no_vacío,
+                       tipo_esperado: type = float,
+                       *args, **kwargs) -> None:
+    MÉTODOS_SALIDA: tuple[str] = ('salir', 'exit', 'volver')
+
+    if not lista:
+        print('[red]ERROR: Lista no válida o inexistente.[/red]')
+        return
+    
     while True:
-        entrada: str = pedir_texto_no_vacío(mensaje)
-        if entrada in MÉTODOS_SALIDA:
+        entrada: str = función_usada(*args, **kwargs)
+
+        if entrada.strip().lower() in MÉTODOS_SALIDA:
             print()
             break
+
         try:
-            tiempo_ingresado: float = float(entrada)
+            tiempo_ingresado: Any = tipo_esperado(entrada)
             lista.append(tiempo_ingresado)
         except ValueError:
-            print(f'[red]ERROR: Input no admitido.[/red]\n')
+            print(f'[red]ERROR: Input no admitido. Se esperaba un {tipo_esperado.__name__}.[/red]\n')
