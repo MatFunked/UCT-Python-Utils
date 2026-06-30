@@ -22,11 +22,39 @@ def construir_matriz(filas: int = 1, columnas: int = 1,
     return matriz
 
 
-def reemplazar_valor(matriz: list[list] = None, x: int = 1, y: int = 1, reemplazo = None,
-                         función_usada: function = pedir_texto_no_vacío) -> None:
-    reemplazo = función_usada if reemplazo is None else reemplazo
-    matriz[y - 1][x - 1] = reemplazo
+def reemplazar_valor(matriz: list[list] = None,
+                     x: int = 1, 
+                     y: int = 1,
+                     reemplazo = None,
+                     función_usada: Callable = pedir_texto_no_vacío,
+                     *args, **kwargs) -> None:
+    """
+    Reemplaza un valor en una matriz (basada en coordenadas 1-en-adelante).
+    
+    Ejemplos de uso correctos:
+    1. Pasando los argumentos directos para la función recolectora:
+       reemplazar_valor(matriz, 2, 2, función_usada=pedir_decimal_rango, mínimo=0.0, máximo=20.0)
+       
+    2. Usando una función lambda sin argumentos si prefieres preconfigurarla:
+       reemplazar_valor(matriz, 2, 2, función_usada=lambda: pedir_decimal_rango('Hola', mínimo=0.0, máximo=20.0))
+    """
 
+    if matriz is None:
+        print('[red]ERROR: Matriz [bold]inválida[/bold] o [bold]inexistente[/bold][/red]')
+        return
+        
+    if (y < 1 or y > len(matriz)) or (x < 1 or x > len(matriz[0])):
+        print('[red]ERROR: Posición fuera de rango.[/red]')
+        return
+
+    if reemplazo is None:
+        try:
+            reemplazo = función_usada(*args, **kwargs)
+        except TypeError:
+            print('[red]ERROR: Reemplazo [bold]inexistente[/bold] o argumentos de función inválidos.[/red]')
+            return
+
+    matriz[y - 1][x - 1] = reemplazo
 
 def añadir_datos(lista: list[float], mensaje: str = 'Ingrese un dato') -> None:
     MÉTODOS_SALIDA: tuple[str] = ('salir', 'exit')
