@@ -2,6 +2,7 @@ from rich import print
 from collections.abc import Callable
 from utils.inputs import pedir_texto_no_vacío
 from typing import Any
+from .core.exceptions import ComandoSalirException
 
 #===================================================Matrices===================================================
 def construir_matriz(filas: int = 1, columnas: int = 1, 
@@ -74,24 +75,16 @@ def imprimir_matriz(matriz: list[list[Any]] | None = None) -> None:
 
 #====================================================Listas====================================================
 def añadir_datos_lista(lista: list[Any] = None,
-                       función_usada: function = pedir_texto_no_vacío,
-                       tipo_esperado: type = float,
+                       función_usada: Callable = pedir_texto_no_vacío,
                        *args, **kwargs) -> None:
-    MÉTODOS_SALIDA: tuple[str] = ('salir', 'exit', 'volver')
 
-    if not lista:
+    if lista is None:
         print('[red]ERROR: Lista no válida o inexistente.[/red]')
         return
     
     while True:
-        entrada: str = función_usada(*args, **kwargs)
-
-        if entrada.strip().lower() in MÉTODOS_SALIDA:
-            print()
-            break
-
         try:
-            tiempo_ingresado: Any = tipo_esperado(entrada)
-            lista.append(tiempo_ingresado)
-        except ValueError:
-            print(f'[red]ERROR: Input no admitido. Se esperaba un {tipo_esperado.__name__}.[/red]\n')
+            dato_ingresado: str = función_usada(*args, **kwargs)
+            lista.append(dato_ingresado)
+        except ComandoSalirException:
+            return

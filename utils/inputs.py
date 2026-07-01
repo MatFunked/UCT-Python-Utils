@@ -1,13 +1,20 @@
 from rich import print
+from .core.exceptions import ComandoSalirException
+from .core.constants import MÉTODOS_SALIDA
 
 #=====================================================Enteros=====================================================
 def pedir_entero(mensaje: str = 'Ingrese un entero', *, marcador: bool = True) -> int:
     while True:
+        if marcador:
+            entrada_cruda: str = input(f'{mensaje}:\n > ')
+        else:
+            entrada_cruda: str = input(mensaje)
+
+        if entrada_cruda.strip().lower() in MÉTODOS_SALIDA:
+            raise ComandoSalirException()
+
         try:
-            if marcador:
-                return int(input(f'{mensaje}:\n > '))
-            else:
-                return int(input(mensaje))
+            return int(entrada_cruda)
         except ValueError:
             print('[red]ERROR: Solo enteros admitidos.[/red]')
 
@@ -38,11 +45,16 @@ def pedir_ciertos_enteros(cantidad: int = 1) -> list[int]:
 #====================================================Decimales====================================================
 def pedir_decimal(mensaje:str='Ingrese un decimal', *, marcador:bool=True) -> float:
     while True:
+        if marcador:
+            entrada_cruda: str = input(f'{mensaje}:\n > ')
+        else:
+            entrada_cruda: str = input(mensaje)
+
+        if entrada_cruda.strip().lower() in MÉTODOS_SALIDA:
+            raise ComandoSalirException()
+        
         try:
-            if marcador:
-                return float(input(f'{mensaje}:\n > '))
-            else:
-                return float(input(mensaje))
+            return float(entrada_cruda)
         except ValueError:
             print('[red]ERROR: Solo decimales admitidos.[/red]')
 

@@ -1,0 +1,1 @@
+MÉTODOS_SALIDA: tuple[str, ...] = ['salir', 'exit', 'volver', 'quit']

@@ -4,20 +4,20 @@
 
 ## Novedades (News)
 
-¡El proyecto ha sido reestructurado! Ahora está dividido en **módulos más específicos**, lo que facilita la lectura del código y la búsqueda de funciones.
+¡Nueva Restructuración! [3.0.0]
+Ahora tanto
+```python
+from utils import función
+```
+como
+```python
+from utils.módulo import función
+```
+son complétamente válidos.
 
-  
-
-Además:
-
-* Se añadieron nuevas funciones.
-
-* Se refactorizaron por completo las herramientas ya existentes para mejorar su rendimiento.
-
-
-Fix (2.1.1):
-
-* Se ha solucionado el problema con la función pedir_entero_rango().
+### Ahora son 20 funciones dividas en 3 módulos!
+Se ha invertido tiempo en reforzar las funciones y hacerlas lo más modular posible.
+Algunas ya cuentan con documentación y estaremos trabajando para que todas la tengan.
 
 ## Cómo instalar (How to install)
 
