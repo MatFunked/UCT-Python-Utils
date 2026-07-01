@@ -33,7 +33,7 @@ from .inputs import(
     pedir_booleano
 )
 
-__version__ = "3.0.0"
+__version__ = "3.0.1"
 __author__ = "END_MATH"
 __description__ = """
 Usar inputs.py para entradas de usuario y aesthetic.py para cuestiones estéticas
