@@ -2,7 +2,7 @@ from rich import print
 from collections.abc import Callable
 from utils.inputs import pedir_texto_no_vacío
 from typing import Any
-from .core.exceptions import ComandoSalirException
+from utils.core.exceptions import ComandoSalirException
 
 #===================================================Matrices===================================================
 def construir_matriz(filas: int = 1, columnas: int = 1, 

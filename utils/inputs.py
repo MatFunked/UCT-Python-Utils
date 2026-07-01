@@ -1,6 +1,6 @@
 from rich import print
-from .core.exceptions import ComandoSalirException
-from .core.constants import MÉTODOS_SALIDA
+from utils.core.exceptions import ComandoSalirException
+from utils.core.constants import MÉTODOS_SALIDA
 
 #=====================================================Enteros=====================================================
 def pedir_entero(mensaje: str = 'Ingrese un entero', *, marcador: bool = True) -> int:
