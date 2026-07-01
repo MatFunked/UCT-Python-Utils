@@ -15,5 +15,5 @@ dependencies = [
     "rich"
 ]
 
-[tool.setuptools]
-packages = ["utils"]
+[tool.setuptools.packages.find]
+include = ["utils*"]
